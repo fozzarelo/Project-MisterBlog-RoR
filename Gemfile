@@ -15,6 +15,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
 gem 'friendly_id'
+gem 'bootstrap-generators'
 #Images
 gem 'carrierwave'
 gem "fog"
@@ -34,6 +35,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'lodash-rails'
 gem "cancancan"
 gem 'simple_form'
 gem "rails_12factor", group: :production

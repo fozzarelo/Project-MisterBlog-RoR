@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
 
 <p>
   <strong>Title:</strong>
@@ -17,3 +17,30 @@
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
+
+<div id="comment-form">
+	 <%= form_for @comment, url: post_comments_path(@post) do |f| %>
+		   <%= f.text_area :body, size: '100x8'%>
+		   <br>
+		   <%= f.submit %>
+	 <% end %>
+ </div>
+
+<h2>Comments</h2>
+<% @post.comments.each do |comment| %>
+   <p>
+       <strong>Comment:</strong>
+       <%= comment.body %>
+       <% if can? :destroy, comment %>
+         <%= link_to "Delete", post_comment_path(post_id: @post, id: comment), method: :delete, data: {confirm: "Are you sure?"} %>
+       <% end %>
+    </p>
+<% end %>
+
+
+
+
+
+
+<!-- TODO add the tagging here -->
+<!-- TODO add the likes here -->

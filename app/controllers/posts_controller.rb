@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
@@ -10,6 +11,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+	   @comment = Comment.new
   end
 
   # GET /posts/new
@@ -24,6 +26,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+	  #TODO when saved, make sure it saves with taggings
     @post = Post.new(post_params)
 
     respond_to do |format|
@@ -41,6 +44,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
+		 #TODO when saved, make sure it saves with taggings
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
@@ -69,6 +73,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
+		 # TODO include the taggings here. include the likes too?
       params.require(:post).permit(:title, :body, :user_id)
     end
 end

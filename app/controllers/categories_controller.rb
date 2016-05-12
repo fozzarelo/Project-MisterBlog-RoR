@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
+  # TODO do we need all these? clean up!
   # GET /categories
   # GET /categories.json
   def index
