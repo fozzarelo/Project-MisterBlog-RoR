@@ -12,11 +12,19 @@
 
 <p>
   <strong>User:</strong>
-  <%= @post.user %>
+  <%= @post.user.full_name %>
+</p>
+<p>
+  <strong>Tags:</strong>
+  <% @post.categories.each do |cat|  %>
+		<%= cat.title  %> |
+	<% end %>
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<% if can? :update, @post %>
+	<%= link_to 'Edit', edit_post_path(post_id: @post) %>
+	<%= link_to 'Delete', post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
+<% end %>
 
 <div id="comment-form">
 	 <%= form_for @comment, url: post_comments_path(@post) do |f| %>
@@ -38,9 +46,4 @@
 <% end %>
 
 
-
-
-
-
-<!-- TODO add the tagging here -->
 <!-- TODO add the likes here -->

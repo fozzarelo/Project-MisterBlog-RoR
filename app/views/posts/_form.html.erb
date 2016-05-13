@@ -5,7 +5,7 @@
   <div class="form-inputs">
     <%= f.input :title %>
     <%= f.input :body %>
-    <%= f.association :user %>
+    <%= f.association :categories, input_html: {class: "chosen-select"} %>
   </div>
 
   <div class="form-actions">

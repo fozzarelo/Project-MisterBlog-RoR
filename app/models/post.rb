@@ -9,6 +9,7 @@ class Post < ActiveRecord::Base
 	has_many :categories, through: :taggings
 
 	belongs_to :user
+
 	has_many :comments, dependent: :destroy
 
   def self.search(word)

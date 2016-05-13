@@ -16,6 +16,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
 gem 'friendly_id'
 gem 'bootstrap-generators'
+gem 'kaminari'
 #Images
 gem 'carrierwave'
 gem "fog"
@@ -42,6 +43,7 @@ gem "rails_12factor", group: :production
 gem 'chosen-rails'
 gem 'jquery-turbolinks'
 gem 'rack-cors', require: 'rack/cors'
+gem 'compass-rails'
 
 gem "quiet_assets"
 gem 'delayed_job_active_record'
@@ -55,6 +57,8 @@ gem "delayed_job_web"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+	gem 'rspec-rails', '~> 3.0'
+	gem 'factory_girl_rails'
 end
 
 group :development do

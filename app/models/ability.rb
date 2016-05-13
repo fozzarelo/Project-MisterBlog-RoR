@@ -10,11 +10,11 @@ class Ability
 
         #can :manage, :all if user.admin?
 
-      	can CRUD - [:read], Post do |post|
-           post.user == user
-         end
+    	can :update, Post do |post|
+         post.user == user
+       end
 
-			can :read, Post do |post|
+			can :create, Post do |post|
            user.persisted?
          end
 
@@ -22,7 +22,7 @@ class Ability
 				com.user == user || com.post.user == user
          end
 
-        can [:read, :create], Comment do |com|
+        can [:create], Comment do |com|
            user.persisted?
         end
 

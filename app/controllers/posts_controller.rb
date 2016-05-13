@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   def create
 	  #TODO when saved, make sure it saves with taggings
     @post = Post.new(post_params)
-
+		@post.user_id = current_user.id
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -74,6 +74,6 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
 		 # TODO include the taggings here. include the likes too?
-      params.require(:post).permit(:title, :body, :user_id)
+      params.require(:post).permit(:title, :body, category_ids:[])
     end
 end
