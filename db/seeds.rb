@@ -41,4 +41,8 @@ end
 	Like.create(post_id: rand(29)+1, user_id: rand(5)+1)
 end
 
+60.times do
+	Fav.create(post_id: rand(29)+1, user_id: rand(5)+1)
+end
+
 puts "Seeded"

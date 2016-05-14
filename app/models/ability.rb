@@ -28,11 +28,15 @@ class Ability
 
 		can :like, Post do |pos|
 			# can only like other users's posts
-			pos.user != user
+			user.persisted? && pos.user != user
 		end
 
 		can :destroy, Like do |lik|
 			lik.user == user
+		end
+
+		can :destroy, Fav do |fav|
+			fav.user == user
 		end
 
 	end

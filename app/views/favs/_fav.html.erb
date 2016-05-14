@@ -1,0 +1,9 @@
+<% if can? :create, @post  %>
+	<% if @post.faved_by(current_user) %>
+	  <%= link_to "Un-Fav", post_fav_path(@post, user_fav), method: :delete %>
+		<!-- #, remote: true %> -->
+	<% else %>
+	  <%= link_to "Fav", post_favs_path(@post), method: :post %>
+		<!-- # , remote: true %> -->
+	<% end %>
+<% end %>

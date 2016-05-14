@@ -35,6 +35,7 @@
           <li class="active"><%= link_to "Home", posts_path %></li>
 					<li><%= link_to 'New Post', new_post_path %></li>
 			 <% if user_signed_in? %>
+			 	<li><%= link_to 'Your Favs', favs_path %></li>
 				<li><%= link_to "Logout", sessions_path, method: :delete,
 					data: {confirm: "are you sure you want to log out?"}%></li>
 			<% else %>

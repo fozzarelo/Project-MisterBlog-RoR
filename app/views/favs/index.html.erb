@@ -1,15 +1,12 @@
-
-
-<h1>Blog away.. </h1>
+<h1>Your favs.. </h1>
 
 <div class="row">
-		<% @posts.each do |p| %>
+		<% @favs.each do |fav| %>
 	  	  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 	  		 <p style="color:#882323;"><span class="glyphicon glyphicon-asterisk">
-					 <%= link_to p.title, post_path(p), style: "color:#882323;" %></p>
+					 <%= link_to fav.post.title, post_path(fav.post), style: "color:#882323;" %></p>
 				 <p style="color:#8A8785;">by:
-				 <!--# <%= link_to p.user.full_name, post_path(p) %></p> -->
-				 <%= p.user.full_name  %>
+				 <%= fav.user.full_name  %>
 	  	  </div>
 	  <% end %>
   </div>

@@ -22,12 +22,16 @@
 </p>
 
 <% if can? :update, @post %>
-	<%= link_to "Edit Post", edit_post_path, class: 'btn btn-success'%>
+	<%= link_to "Edit", edit_post_path %> |
 	<%= link_to 'Delete', post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
 <% end %>
 
 <div id="post-like">
   <%= render "/likes/like" %>
+</div>
+
+<div id="post-fav">
+  <%= render "/favs/fav" %>
 </div>
 
 <div id="comment-form">
@@ -41,7 +45,8 @@
 <h2>Comments</h2>
 <% @post.comments.each do |comment| %>
    <p>
-       <strong>Comment:</strong>
+       <span class="glyphicon glyphicon-user">
+			 <%= comment.user.first_name %> :
        <%= comment.body %>
        <% if can? :destroy, comment %>
          <%= link_to "Delete", post_comment_path(post_id: @post, id: comment), method: :delete, data: {confirm: "Are you sure?"} %>

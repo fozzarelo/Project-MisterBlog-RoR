@@ -5,6 +5,9 @@ class Post < ActiveRecord::Base
 	has_many :likes, dependent: :destroy
 	has_many :users, through: :likes
 
+	has_many :favs, dependent: :destroy
+	has_many :fav_users, through: :favs, source: :user
+
 	has_many :taggings, dependent: :destroy
 	has_many :categories, through: :taggings
 
@@ -22,6 +25,10 @@ class Post < ActiveRecord::Base
 
 	def liked_by(user)
   	likes.find_by_user_id(user.id).present?
+	end
+
+	def faved_by(user)
+  	favs.find_by_user_id user if user
 	end
 
 

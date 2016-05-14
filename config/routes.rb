@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  resources :categories
 
   resources :posts do
   	resources :comments, only: [:new, :create, :destroy]
 		resources :likes, only: [:create, :destroy]
+		resources :favs, only: [:create, :destroy]
   end
+	resources :favs, only: [:index]
   resources :users, only: [:new, :create]
-
   resources :sessions, only: [:new, :create] do
   	delete :destroy, on: :collection
   end

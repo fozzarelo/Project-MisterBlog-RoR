@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 	has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
 
+	has_many :favs, dependent: :destroy
+  has_many :fav_posts, through: :favs, source: :post
 
 	def full_name
 		full_name = "#{self.first_name} #{self.last_name}"
