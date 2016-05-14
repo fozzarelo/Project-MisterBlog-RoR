@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
    validates(:body, {presence: true})
 
 	has_many :likes, dependent: :destroy
-	has_many :liking_users, through: :likes, source: :user
+	has_many :users, through: :likes
 
 	has_many :taggings, dependent: :destroy
 	has_many :categories, through: :taggings
@@ -15,4 +15,14 @@ class Post < ActiveRecord::Base
   def self.search(word)
 			where('title ILIKE ? OR body ILIKE ?', "%#{word}%", "%#{word}%")
 	end
+
+	def like_for(user)
+     likes.find_by_user_id user if user
+  end
+
+	def liked_by(user)
+  	likes.find_by_user_id(user.id).present?
+	end
+
+
 end

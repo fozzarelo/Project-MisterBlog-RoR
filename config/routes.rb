@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :categories
 
   resources :posts do
-  		resources :comments, only: [:new, :create, :destroy]
+  	resources :comments, only: [:new, :create, :destroy]
 		resources :likes, only: [:create, :destroy]
   end
   resources :users, only: [:new, :create]
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
    root 'posts#index'
-	
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

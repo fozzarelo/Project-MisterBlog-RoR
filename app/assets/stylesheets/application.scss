@@ -21,3 +21,11 @@
  @import "bootstrap-generators";
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ a {
+   color: #666;
+
+   &:visited {
+     color: #666;
+   }
+}

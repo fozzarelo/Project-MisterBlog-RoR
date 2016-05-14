@@ -22,15 +22,19 @@
 </p>
 
 <% if can? :update, @post %>
-	<%= link_to 'Edit', edit_post_path(post_id: @post) %>
+	<%= link_to "Edit Post", edit_post_path, class: 'btn btn-success'%>
 	<%= link_to 'Delete', post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
 <% end %>
 
+<div id="post-like">
+  <%= render "/likes/like" %>
+</div>
+
 <div id="comment-form">
 	 <%= form_for @comment, url: post_comments_path(@post) do |f| %>
-		   <%= f.text_area :body, size: '100x8'%>
+		   <%= f.text_area :body, size: '100x5'%>
 		   <br>
-		   <%= f.submit %>
+		   <%= f.submit class: 'btn btn-primary'%>
 	 <% end %>
  </div>
 
