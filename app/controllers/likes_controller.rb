@@ -10,10 +10,10 @@ class LikesController < ApplicationController
     respond_to do |format|
       if like.save
         format.html { redirect_to post_path(@post), notice: "Liked!" }
-			#  format.js   { render } # likes/create.js.erb
+			  format.js   { render } # likes/create.js.erb
       else
         format.html { redirect_to post_path(@post), alert: "You've already liked!" }
-      #  format.js   { render js: "alert('Can\'t like, please refresh the page!');" }
+        format.js   { render js: "alert('Can\'t like, please refresh the page!');" }
       end
     end
   end

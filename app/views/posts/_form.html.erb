@@ -4,7 +4,7 @@
 
   <div class="form-inputs">
     <%= f.input :title %>
-    <%= f.input :body %>
+    <%= f.input :body, as: :text %>
     <%= f.association :categories, input_html: {class: "chosen-select"} %>
   </div>
 

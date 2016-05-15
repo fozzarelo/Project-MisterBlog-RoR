@@ -1,3 +1,15 @@
+
+<script>
+	$(document).ready(function() {
+		$('#post-like').onClick(function(){
+			$(this).css('opacity', 0);
+			setTimeout(function(){
+				$(#this).css('opacity', 1);
+				},
+				2000)});
+	});
+</script>
+
 <!-- <p id="notice"><%= notice %></p> -->
 
 <p>
@@ -35,8 +47,8 @@
 </div>
 
 <div id="comment-form">
-	 <%= form_for @comment, url: post_comments_path(@post) do |f| %>
-		   <%= f.text_area :body, size: '100x5'%>
+	 <%= simple_form_for @comment, url: post_comments_path(@post) do |f| %>
+		   <%= f.input :body, as: :text, label:false %>
 		   <br>
 		   <%= f.submit class: 'btn btn-primary'%>
 	 <% end %>
