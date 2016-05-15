@@ -1,0 +1,3 @@
+$("#<%=dom_id(@comment)%>").hide();
+$('#<%=dom_id(@comment)%> > span > p').html("<%= @comment.body %>");
+$("#<%=dom_id(@comment)%>").fadeIn(1000);

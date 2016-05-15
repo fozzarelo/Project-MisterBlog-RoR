@@ -31,7 +31,6 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-	  #TODO when saved, make sure it saves with taggings
     @post = Post.new(post_params)
 		@post.user_id = current_user.id
     respond_to do |format|
@@ -49,13 +48,12 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
-		 #TODO when saved, make sure it saves with taggings
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
+        #format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        #format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -78,7 +76,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-		 # TODO include the taggings here. include the likes too?
       params.require(:post).permit(:title, :body, category_ids:[])
     end
 end

@@ -1,11 +1,13 @@
 
    	 <div id="<%= dom_id(comment) %>">
-       <span class="glyphicon glyphicon-user">
-			 <%= comment.user.first_name %> :
-       <%= comment.body %>
+			 <br>
+			 <span class="glyphicon glyphicon-user">
+			 <strong><%= comment.user.first_name %></strong>
+       <p><%= comment.body %></p>
        <% if can? :destroy, comment %>
 		 			<strong>
-	         		<%= link_to "", post_comment_path(post_id: @post, id: comment), method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "glyphicon glyphicon-remove" %>
+	         		<%= link_to "", post_comment_path(post_id: @post, id: comment), method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "glyphicon glyphicon-remove" %> |
+							<%= link_to "", edit_post_comment_path(@post, comment), remote: true, data: {toggle: "modal", target: "#edit-comment"}, class: "glyphicon glyphicon-pencil" %>
 					 </strong>
        <% end %>
     </div>

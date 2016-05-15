@@ -1,31 +1,7 @@
 
-<script>
-	$(document).ready(function() {
-		$('#post-like').onClick(function(){
-			$(this).css('opacity', 0);
-			setTimeout(function(){
-				$(#this).css('opacity', 1);
-				},
-				2000)});
-	});
-</script>
-
-<!-- <p id="notice"><%= notice %></p> -->
-
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @post.user.full_name %>
-</p>
+<p><strong>Title:</strong><%= @post.title %></p>
+<p><strong>Body:</strong><%= @post.body %></p>
+<p><strong>User:</strong><%= @post.user.full_name %></p>
 <p>
   <strong>Tags:</strong>
   <% @post.categories.each do |cat|  %>
@@ -38,24 +14,37 @@
 	<%= link_to 'Delete', post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
 <% end %>
 
-<div id="post-like">
-  <%= render "/likes/like" %>
-</div>
+<div id="post-like"><%= render "/likes/like" %></div>
 
-<div id="post-fav">
-  <%= render "/favs/fav" %>
-</div>
+<div id="post-fav"><%= render "/favs/fav" %></div>
 
 <div id="comment-form">
   <%= render "/comments/form", comment: @comment %>
 </div>
 
+<!-- TODO : the reverse each helps in bringing the freshest coments first and displaying the in the top of the list, i works wel with new comments, you can test it by reloading it. in some cases, the new comments get stored in the middle of the bd table, not in the bottom, seems like some of the already stored comments like to remain on the bottom no mater what. why is that?  for now to fix it, im just donin an order_by created at comment. not very efficient, but it will work-->
 <h2>Comments</h2>
 <div id="comments">
-	<% @post.comments.each do |com| %>
+	<% @post.comments.order('created_at DESC').each do |com| %>
 		<%= render "comments/comment", comment: com %>
 	<% end %>
 </div>
 
-
-<!-- TODO add the likes here -->
+<!-- Modal -->
+<div class="modal fade" id="edit-comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         <h4 class="modal-title" id="myModalLabel">Edit Comment</h4>
+       </div>
+       <div class="modal-body">
+         ...
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         <button type="button" class="btn btn-primary">Save changes</button>
+       </div>
+     </div>
+   </div>
+</div>

@@ -16,16 +16,11 @@
  *= require chosen-compass
  */
 
+ $brand-primary: #cc0000;
+ $border-radius-base: 0;
+
 
  @import "bootstrap-variables";
  @import "bootstrap-generators";
  @import "bootstrap-sprockets";
  @import "bootstrap";
-
- a {
-   color: #666;
-
-   &:visited {
-     color: #666;
-   }
-}

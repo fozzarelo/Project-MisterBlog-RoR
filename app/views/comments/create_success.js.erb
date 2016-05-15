@@ -1,3 +1,6 @@
+
 $("#comments").prepend("<%= j render '/comments/comment', comment: @comment, style: 'display: none' %>");
-$("#make-a-comment").html("<%= j render '/comments/form', comment: Comment.new %>");
- $("#<%= dom_id(@comment) %>").slideDown(1000);
+$("#<%=dom_id(@comment)%>").hide();
+$("#comment-form").html("<%= j render '/comments/form', comment: Comment.new %>");
+$("#<%=dom_id(@comment)%>").slideDown(2000);
+// TODO I had to separate the hide action from the initial rendel.. i have a 'style display none' in there, but it's not doing anything.. why doesn't this work??

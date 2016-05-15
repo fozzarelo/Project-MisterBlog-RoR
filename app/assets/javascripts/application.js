@@ -18,4 +18,5 @@
 //= Require bootstrap-sprocket
 //= require bootstrap
 //= require chosen-jquery
+//= require bootstrap/modal
 //= require_tree .
