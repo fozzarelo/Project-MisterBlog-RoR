@@ -47,24 +47,15 @@
 </div>
 
 <div id="comment-form">
-	 <%= simple_form_for @comment, url: post_comments_path(@post) do |f| %>
-		   <%= f.input :body, as: :text, label:false %>
-		   <br>
-		   <%= f.submit class: 'btn btn-primary'%>
-	 <% end %>
- </div>
+  <%= render "/comments/form", comment: @comment %>
+</div>
 
 <h2>Comments</h2>
-<% @post.comments.each do |comment| %>
-   <p>
-       <span class="glyphicon glyphicon-user">
-			 <%= comment.user.first_name %> :
-       <%= comment.body %>
-       <% if can? :destroy, comment %>
-         <%= link_to "Delete", post_comment_path(post_id: @post, id: comment), method: :delete, data: {confirm: "Are you sure?"} %>
-       <% end %>
-    </p>
-<% end %>
+<div id="comments">
+	<% @post.comments.each do |com| %>
+		<%= render "comments/comment", comment: com %>
+	<% end %>
+</div>
 
 
 <!-- TODO add the likes here -->

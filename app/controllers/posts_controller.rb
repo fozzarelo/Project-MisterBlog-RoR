@@ -12,6 +12,11 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
 	   @comment = Comment.new
+		 respond_to do |format|
+       format.html { render } # render questions/show.html.erb
+       format.json { render json: @post.to_json }
+		 end
+
   end
 
   # GET /posts/new

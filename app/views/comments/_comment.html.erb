@@ -1,0 +1,11 @@
+
+   	 <div id="<%= dom_id(comment) %>">
+       <span class="glyphicon glyphicon-user">
+			 <%= comment.user.first_name %> :
+       <%= comment.body %>
+       <% if can? :destroy, comment %>
+		 			<strong>
+	         		<%= link_to "", post_comment_path(post_id: @post, id: comment), method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "glyphicon glyphicon-remove" %>
+					 </strong>
+       <% end %>
+    </div>

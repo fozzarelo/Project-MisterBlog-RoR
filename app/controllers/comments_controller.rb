@@ -3,37 +3,29 @@ class CommentsController < ApplicationController
 
 # TODO why couldn't I require params post id?
   def create
-	  	 @post = Post.find params[:post_id]
-	    comment_params = params.require(:comment).permit(:body, :post_id)
-	    @comment = Comment.new(comment_params)
-	    @comment.post_id = @post.id
-       @comment.user_id = current_user.id
-	    if @comment.save
-		 	respond_to do |format|
+		@post = Post.find params[:post_id]
+	  comment_params = params.require(:comment).permit(:body, :post_id)
+	  @comment = Comment.new(comment_params)
+	  @comment.post_id = @post.id
+ 		@comment.user_id = current_user.id
+	 	respond_to do |format|
+	  	if @comment.save
 				format.html { redirect_to post_path(@post), notice: 'Comment was successfully created.' }
-				# format.json { render :show, status: :created, location: @comment }
-			end
-	    else
-			respond_to do |format|
+				format.js { render :create_success }
+	  	else
 				format.html { render "/posts/show", notice: 'Error saving comment'}
-				#format.json { render json: @comment.errors, status: :unprocessable_entity }
+				format.js { render :create_failure }
 			end
-
-	    end
+  	end
 	end
 
 	def destroy
 		@comment = Comment.find(params[:id])
-		@post = Post.find params[:post_id]
-		if @comment.destroy
-			respond_to do |format|
-				format.html { redirect_to post_path(@post), notice: 'Comment was successfully destroyed.' }
-		      format.json { head :no_content }
-			end
-		else
-			render "fail"
+		#@post = Post.find params[:post_id]
+		@comment.destroy
+		respond_to do |format|
+			format.html { redirect_to post_path(@post), notice: 'Comment deleted' }
+	    format.js { render }
 		end
 	end
-
-
 end
