@@ -22,7 +22,7 @@ Category.create(title: "Life")
 Category.create(title: "Economy")
 
 30.times do
-  Post.create  	title:  		Faker::Book.title,
+  Post.create  	:  		Faker::Book.title,
               	body:    		Faker::Lorem.paragraph,
                 user_id: 		rand(5)+1
 end

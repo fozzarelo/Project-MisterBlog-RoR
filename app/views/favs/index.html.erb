@@ -1,6 +1,6 @@
 <h1>Your favs.. </h1>
 
-<div class="row">
+<!-- <div class="row">
 		<% @favs.each do |fav| %>
 	  	  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 	  		 <p style="color:#882323;"><span class="glyphicon glyphicon-asterisk">
@@ -10,4 +10,29 @@
 	  	  </div>
 	  <% end %>
   </div>
-</div>
+</div> -->
+<!-- TODO add a on the post titles, so that you can go to their shwo page by clicking on them, the json is already passing a post_id, use that to buel your a href should be /post/pot_id -->
+<script type="text/javascript">
+	$.ajax({
+		url: '/favs.json',
+		method: "GET",
+		error: function(){
+			alert("Failed");
+		},
+		success: function(data) {
+			$('#favs').children().remove();
+			_.forEach(data, function(fav){
+				$('#favs').append(
+						"<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>"
+						+ "<p style='color:#882323;'><span class='glyphicon glyphicon-asterisk'>"
+						+ fav['title'] + "</p>"
+						+ "<p style='color:#8A8785;''>by:"
+						+ fav['user']
+						+ "</div>"
+				)
+			})
+		}
+	});
+</script>
+
+<div id='favs'></div>

@@ -19,4 +19,5 @@
 //= require bootstrap
 //= require chosen-jquery
 //= require bootstrap/modal
+//= require lodash
 //= require_tree .

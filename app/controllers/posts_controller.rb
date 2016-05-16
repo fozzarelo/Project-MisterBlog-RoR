@@ -6,6 +6,10 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+		respond_to do |format|
+			format.html { render } # render questions/show.html.erb
+			format.json { render json: @posts.to_json(include: :user) }
+		end
   end
 
   # GET /posts/1
