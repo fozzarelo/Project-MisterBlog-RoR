@@ -74,6 +74,9 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
+	# TODO: Make sure to configure and un-comment this b4 launching
+	# config.action.mailer.default_url_options = {host: 'localhost:3000'}
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
