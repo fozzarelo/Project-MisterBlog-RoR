@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
 
   resources :posts do
-  	resources :comments
-		resources :likes, only: [:create, :destroy]
-		resources :favs, only: [:create, :destroy]
+    resources :comments
+    resources :likes, only: [:create, :destroy]
+    resources :favs, only: [:create, :destroy]
   end
-	resources :favs, only: [:index]
+
+  resources :favs, only: [:index]
   resources :users, only: [:new, :create]
+
   resources :sessions, only: [:new, :create] do
-  	delete :destroy, on: :collection
+    delete :destroy, on: :collection
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -16,6 +18,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
    root 'posts#index'
+
+   get 'welcome' => 'posts#welcome'
 
 
   # Example of regular route:

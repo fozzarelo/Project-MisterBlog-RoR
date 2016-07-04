@@ -17,8 +17,9 @@ class Ability
 			user.persisted?
 		end
 
-		can [:destory], Comment do |com|
+		can [:destory, :update], Comment do |com|
 			#can delete if you own the comment, or the post
+			# TODO put a byebug here and see why you can delete, edit your own comments
 			com.user == user || com.post.user == user
 		end
 

@@ -27,21 +27,20 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to "Blogo", posts_path, class: "navbar-brand" %>
-				<!-- TODO Add an about page, use blogo to link to it here! -->
+        <%= link_to "Blogo", welcome_path, class: "navbar-brand" %>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li class="active"><%= link_to "Home", posts_path %></li>
-					<li><%= link_to 'New Post', new_post_path %></li>
-			 <% if user_signed_in? %>
-			 	<li><%= link_to 'Your Favs', favs_path %></li>
-				<li><%= link_to "Logout", sessions_path, method: :delete,
-					data: {confirm: "are you sure you want to log out?"}%></li>
-			<% else %>
-			  <li><%= link_to "Login", new_session_path %></li>
-			  <li><%= link_to "Sign Up", new_user_path %></li>
-		 <% end %>
+          <li><%= link_to 'New Post', new_post_path %></li>
+       <% if user_signed_in? %>
+         <li><%= link_to 'Your Favs', favs_path %></li>
+        <li><%= link_to "Logout", sessions_path, method: :delete,
+          data: {confirm: "are you sure you want to log out?"}%></li>
+      <% else %>
+        <li><%= link_to "Login", new_session_path %></li>
+        <li><%= link_to "Sign Up", new_user_path %></li>
+     <% end %>
         </ul>
       </div>
     </div>

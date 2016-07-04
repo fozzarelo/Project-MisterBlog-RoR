@@ -4,22 +4,25 @@ class PostsController < ApplicationController
 
   # GET /posts
   # GET /posts.json
+  def welcome
+  end
+
   def index
     @posts = Post.all
-		respond_to do |format|
-			format.html { render } # render questions/show.html.erb
-			format.json { render json: @posts.to_json(include: :user) }
-		end
+    respond_to do |format|
+      format.html { render } # render questions/show.html.erb
+      format.json { render json: @posts.to_json(include: :user) }
+    end
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
-	   @comment = Comment.new
-		 respond_to do |format|
+     @comment = Comment.new
+     respond_to do |format|
        format.html { render } # render questions/show.html.erb
        format.json { render json: @post.to_json }
-		 end
+     end
 
   end
 
@@ -36,7 +39,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-		@post.user_id = current_user.id
+    @post.user_id = current_user.id
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }

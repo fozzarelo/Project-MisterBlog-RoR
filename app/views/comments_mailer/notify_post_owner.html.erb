@@ -1,0 +1,13 @@
+<p>Hello <%= @owner.first_name %>,</p>
+
+<p>Someone commented on your post!</p>
+
+<p>The Post: <%= @post.title %></p>
+
+<p>The comment: <%= @comment.body %></p>
+
+<%= link_to "Click here to view the post", post_url(@post) %>
+
+<p>Cheers</p>
+
+<p>Mr. Blogo</p>

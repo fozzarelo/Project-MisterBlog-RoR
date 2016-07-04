@@ -18,9 +18,11 @@
 
 <div id="post-fav"><%= render "/favs/fav" %></div>
 
-<div id="comment-form">
-  <%= render "/comments/form", comment: @comment %>
-</div>
+<% if can? :create, @comment %>
+	<div id="comment-form">
+	  <%= render "/comments/form", comment: @comment %>
+	</div>
+<% end %>
 
 <!-- TODO : the reverse each helps in bringing the freshest coments first and displaying the in the top of the list, i works wel with new comments, you can test it by reloading it. in some cases, the new comments get stored in the middle of the bd table, not in the bottom, seems like some of the already stored comments like to remain on the bottom no mater what. why is that?  for now to fix it, im just donin an order_by created at comment. not very efficient, but it will work-->
 <h2>Comments</h2>
