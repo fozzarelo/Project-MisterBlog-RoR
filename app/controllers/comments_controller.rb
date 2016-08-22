@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     respond_to do |format|
       if @comment.save
-        CommentsMailer.notify_post_owner(@comment).deliver_now
+        # CommentsMailer.notify_post_owner(@comment).deliver_now
         format.html { redirect_to post_path(@post), notice: 'Comment was successfully created.' }
         format.js { render :create_success }
       else
