@@ -1,28 +1,55 @@
 <h1>Your favs.. </h1>
 
 <script type="text/javascript">
-  $.ajax({
+
+var FAVSLIST = []
+
+$.ajax(
+    {
     url: '/favs.json',
     method: "GET",
     error: function(){
       alert("Failed");
     },
-    success: function(data) {
-      $('#favs').children().remove();
-      _.forEach(data, function(fav){
-        $('#favs').append(
-            "<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>"
-            + "<p style='color:#882323;'><span class='glyphicon glyphicon-asterisk'>"
-            + 	"<a style='color:#882323;' href=/posts/" + fav['post_id'] + ">" + fav['title'] + "</a>"
-            + "</p>"
-            + "<p style='color:#8A8785;''>by:"
-            + fav['user']
-            + "</p>"
-            + "</div>"
-        )
-      })
+    success: (data) => {
+      FAVSLIST = data
+      fillTable(FAVSLIST)
     }
   });
+
+fillTable = (array) => {
+  post_id = 'post_id'
+  title = 'title'
+  tit = 'title'
+  $('#favs').children().remove();
+  array.forEach((fav) => {
+    $('#favs').append(
+      "<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>"
+      + "<p style='color:#882323;'><span class='glyphicon glyphicon-asterisk'>"
+      + 	"<a style='color:#882323;' href=/posts/" + fav['post_id'] + ">" + fav['title'] + "</a>"
+      + "</p>"
+      + "<p style='color:#8A8785;''>by:"
+      + fav['user']
+      + "</p>"
+      + "<button onclick='resetNSort(FAVSLIST," + "post_id" + ")'> post_id </button>"
+      + "<button onclick='resetNSort(FAVSLIST," + "tit" + ")'> title</button>"
+      + "</div>"
+    )
+  })
+}
+
+  sortByKey = (array, key) => {
+    return array.sort((a, b) => {
+      var x = a[key]; var y = b[key];
+      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+  }
+
+  resetNSort = (array, key) => {
+    fillTable(sortByKey(array, key))
+  }
+
+
 </script>
 
 <div id='favs'></div>
